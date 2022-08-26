@@ -51,8 +51,10 @@ end type
 global w_font w_font
 
 type variables
-//malik arafath 123
+///Heelo
 //This is Deve A
+
+
 end variables
 on w_font.create
 this.st_size=create st_size
