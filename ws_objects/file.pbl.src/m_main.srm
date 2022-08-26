@@ -1,0 +1,843 @@
+﻿$PBExportHeader$m_main.srm
+forward
+global type m_main from menu
+end type
+type m_file from menu within m_main
+end type
+type m_new from menu within m_file
+end type
+type m_open from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_1 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_main
+m_new m_new
+m_open m_open
+m_save m_save
+m_1 m_1
+m_exit m_exit
+end type
+type m_edit from menu within m_main
+end type
+type m_undo from menu within m_edit
+end type
+type m_-1 from menu within m_edit
+end type
+type m_copy from menu within m_edit
+end type
+type m_cut from menu within m_edit
+end type
+type m_paste from menu within m_edit
+end type
+type m_delete from menu within m_edit
+end type
+type m_2 from menu within m_edit
+end type
+type m_select from menu within m_edit
+end type
+type m_time from menu within m_edit
+end type
+type m_edit from menu within m_main
+m_undo m_undo
+m_-1 m_-1
+m_copy m_copy
+m_cut m_cut
+m_paste m_paste
+m_delete m_delete
+m_2 m_2
+m_select m_select
+m_time m_time
+end type
+type m_option from menu within m_main
+end type
+type m_retuen from menu within m_option
+end type
+type m_- from menu within m_option
+end type
+type m_ from menu within m_option
+end type
+type m_option from menu within m_main
+m_retuen m_retuen
+m_- m_-
+m_ m_
+end type
+global type m_main from menu
+m_file m_file
+m_edit m_edit
+m_option m_option
+end type
+end forward
+
+global type m_main from menu
+m_file m_file
+m_edit m_edit
+m_option m_option
+end type
+global m_main m_main
+
+on m_main.create
+m_main=this
+call super::create
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_option=create m_option
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_option
+end on
+
+on m_main.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_option)
+end on
+
+type m_file from menu within m_main
+m_new m_new
+m_open m_open
+m_save m_save
+m_1 m_1
+m_exit m_exit
+end type
+
+on m_file.create
+call super::create
+this.text = "File (&F)"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_new=create m_new
+this.m_open=create m_open
+this.m_save=create m_save
+this.m_1=create m_1
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_new
+this.Item[UpperBound(this.Item)+1]=this.m_open
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_1
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_new)
+destroy(this.m_open)
+destroy(this.m_save)
+destroy(this.m_1)
+destroy(this.m_exit)
+end on
+
+type m_new from menu within m_file
+end type
+
+on m_new.create
+call super::create
+this.text = "New (&N)~tCtrl+N"
+this.shortcut = 334
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+event clicked;//Clear the content of the editing area
+w_file.mle_edit.Text = ""
+//The unified name of the new file is Untitle
+current_file_name = "Untitled"
+//Modify the window title
+w_file.Title = current_file_name+"-Notepad"
+
+end event
+
+on m_new.destroy
+call super::destroy
+end on
+
+type m_open from menu within m_file
+end type
+
+on m_open.create
+call super::create
+this.text = "Open (&O)...~tCtrl+O"
+this.shortcut = 335
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+event clicked;String docname,named
+Integer Value,rc,fd
+Long ll_Flength
+//Select the file to be opened
+Value = GetFileOpenName("Select the file to be opened",docname,named,"TXT","Text file(*.txt),*.txt,all files(*.*),*.*")
+
+If Value = 1 Then
+	//Get the file length
+	ll_Flength = FileLength(docname)
+	//open a file
+	fd = FileOpen(docname,StreamMode!)
+	If ll_Flength < 32767 Then
+		//Read the content of the file into the multi-line edit box
+		rc = FileRead(fd,w_file.mle_edit.Text)
+		FileClose(fd)
+		//Save the file name, used to save the file in the future
+		current_file_name = docname
+		//Modify the window title
+		w_file.Title = "Notepad__File" + current_file_name
+	End If
+End If
+
+end event
+
+on m_open.destroy
+call super::destroy
+end on
+
+type m_save from menu within m_file
+end type
+
+on m_save.create
+call super::create
+this.text = "Save (&S)~tCtrl+S"
+this.shortcut = 339
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+event clicked;String docname,named
+Integer Value,rc,fd,ret
+Long ll_Flength
+Boolean file_exist
+
+Value = GetFileSaveName("Save as",docname,named,"TXT","Text file(*.txt),*.txt,all files(*.*),*.*")
+If Value = 1 Then
+	ll_Flength = FileLength(docname)
+	fd = FileOpen(docname,StreamMode!)
+	If ll_Flength < 32767 Then
+		file_exist = FileExists(docname)
+		If file_exist Then ret = MessageBox("Save", "Press the OK button to overwrite the selected file" + docname, Question!, YesNo!)
+	rc = FileWrite(fd,w_file.mle_edit.Text)
+	FileClose(fd)
+	current_file_name = docname
+	w_file.Title = current_file_name + "-Notepad__File"
+End If
+End If
+fd = FileOpen(current_file_name,StreamMode!,Write!,LockWrite!,Replace!)
+//Write the content in the multi-line edit box mle_edit to the file
+FileWrite(fd,w_file.mle_edit.Text)
+FileClose(fd)
+
+end event
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_1 from menu within m_file
+end type
+
+on m_1.create
+call super::create
+this.text = "-"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_1.destroy
+call super::destroy
+end on
+
+type m_exit from menu within m_file
+end type
+
+on m_exit.create
+call super::create
+this.text = "Exit"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+event clicked;Close(w_file)
+
+end event
+
+on m_exit.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_main
+m_undo m_undo
+m_-1 m_-1
+m_copy m_copy
+m_cut m_cut
+m_paste m_paste
+m_delete m_delete
+m_2 m_2
+m_select m_select
+m_time m_time
+end type
+
+on m_edit.create
+call super::create
+this.text = "Edit (&E)"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_undo=create m_undo
+this.m_-1=create m_-1
+this.m_copy=create m_copy
+this.m_cut=create m_cut
+this.m_paste=create m_paste
+this.m_delete=create m_delete
+this.m_2=create m_2
+this.m_select=create m_select
+this.m_time=create m_time
+this.Item[UpperBound(this.Item)+1]=this.m_undo
+this.Item[UpperBound(this.Item)+1]=this.m_-1
+this.Item[UpperBound(this.Item)+1]=this.m_copy
+this.Item[UpperBound(this.Item)+1]=this.m_cut
+this.Item[UpperBound(this.Item)+1]=this.m_paste
+this.Item[UpperBound(this.Item)+1]=this.m_delete
+this.Item[UpperBound(this.Item)+1]=this.m_2
+this.Item[UpperBound(this.Item)+1]=this.m_select
+this.Item[UpperBound(this.Item)+1]=this.m_time
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_undo)
+destroy(this.m_-1)
+destroy(this.m_copy)
+destroy(this.m_cut)
+destroy(this.m_paste)
+destroy(this.m_delete)
+destroy(this.m_2)
+destroy(this.m_select)
+destroy(this.m_time)
+end on
+
+type m_undo from menu within m_edit
+end type
+
+on m_undo.create
+call super::create
+this.text = "Undo~tCtrl+U"
+this.shortcut = 341
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+event clicked;w_file.mle_edit.Undo()
+
+end event
+
+on m_undo.destroy
+call super::destroy
+end on
+
+type m_-1 from menu within m_edit
+end type
+
+on m_-1.create
+call super::create
+this.text = "-"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_-1.destroy
+call super::destroy
+end on
+
+type m_copy from menu within m_edit
+end type
+
+event clicked;w_file.mle_edit.Copy()
+
+end event
+
+on m_copy.create
+call super::create
+this.text = "Copy~tCtrl+C"
+this.shortcut = 323
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_copy.destroy
+call super::destroy
+end on
+
+type m_cut from menu within m_edit
+end type
+
+on m_cut.create
+call super::create
+this.text = "Cut~tCtrl+X"
+this.shortcut = 344
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+event clicked;w_file.mle_edit.Cut()
+
+end event
+
+on m_cut.destroy
+call super::destroy
+end on
+
+type m_paste from menu within m_edit
+end type
+
+on m_paste.create
+call super::create
+this.text = "Paste~tCtrl+P"
+this.shortcut = 336
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+event clicked;w_file.mle_edit.Paste()
+
+end event
+
+on m_paste.destroy
+call super::destroy
+end on
+
+type m_delete from menu within m_edit
+end type
+
+event clicked;w_file.mle_edit.Clear()
+
+end event
+
+on m_delete.create
+call super::create
+this.text = "Delete~tDel"
+this.shortcut = 46
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_delete.destroy
+call super::destroy
+end on
+
+type m_2 from menu within m_edit
+end type
+
+on m_2.create
+call super::create
+this.text = "-"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_2.destroy
+call super::destroy
+end on
+
+type m_select from menu within m_edit
+end type
+
+event clicked;w_file.mle_edit.SetFocus()
+w_file.mle_edit.SelectText(1,888888)
+
+end event
+
+on m_select.create
+call super::create
+this.text = "Select~tCtrl+A"
+this.shortcut = 321
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_select.destroy
+call super::destroy
+end on
+
+type m_time from menu within m_edit
+end type
+
+on m_time.create
+call super::create
+this.text = "Time~tF5"
+this.shortcut = 116
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+event clicked;w_file.mle_time.Text = String(Now()) + " " + String(Today())
+w_file.mle_time.SetFocus()
+w_file.mle_time.SelectText(1,20)
+w_file.mle_time.Copy()
+w_file.mle_edit.SetFocus()
+w_file.mle_edit.Paste()
+
+end event
+
+on m_time.destroy
+call super::destroy
+end on
+
+type m_option from menu within m_main
+m_retuen m_retuen
+m_- m_-
+m_ m_
+end type
+
+on m_option.create
+call super::create
+this.text = "Options (&O)"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_retuen=create m_retuen
+this.m_-=create m_-
+this.m_=create m_
+this.Item[UpperBound(this.Item)+1]=this.m_retuen
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_
+end on
+
+on m_option.destroy
+call super::destroy
+destroy(this.m_retuen)
+destroy(this.m_-)
+destroy(this.m_)
+end on
+
+type m_retuen from menu within m_option
+end type
+
+on m_retuen.create
+call super::create
+this.text = "Word wrap"
+this.checked = true
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+event clicked;If m_main.m_option.m_retuen.Checked = True Then
+	m_main.m_option.m_retuen.Checked = False
+	w_file.mle_edit.HScrollBar = True
+Else
+	m_main.m_option.m_retuen.Checked = True
+	w_file.mle_edit.HScrollBar = False
+End If
+
+end event
+
+on m_retuen.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_option
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_ from menu within m_option
+end type
+
+event clicked;Open(w_font)
+
+end event
+
+on m_.create
+call super::create
+this.text = "Font..."
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_.destroy
+call super::destroy
+end on
+

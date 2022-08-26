@@ -1,0 +1,17 @@
+﻿$PBExportHeader$p_file_exe.srj
+$PBExportComments$Generated Application Executable Project
+EXE:D:\BAI TAP\BAI TAP PB105_EN\PB105_EN\36-Notepad\file.exe,,0,0,1
+CMP:0,0,0,2,0,0
+COM:Sybase, Inc.
+DES:Sybase, Inc. Product File
+CPY:
+PRD:PowerBuilder Enterprise Series
+PVS:1,0,0,1
+PVN:1,0,0,1
+FVS:1,0,0,1
+FVN:1,0,0,1
+PBD:D:\BAI TAP\BAI TAP PB105_EN\PB105_EN\36-Notepad\file.pbl,,1
+OBJ:D:\BAI TAP\BAI TAP PB105_EN\PB105_EN\36-Notepad\file.pbl,w_file,w
+OBJ:D:\BAI TAP\BAI TAP PB105_EN\PB105_EN\36-Notepad\file.pbl,file,a
+OBJ:D:\BAI TAP\BAI TAP PB105_EN\PB105_EN\36-Notepad\file.pbl,m_main,m
+OBJ:D:\BAI TAP\BAI TAP PB105_EN\PB105_EN\36-Notepad\file.pbl,w_font,w
